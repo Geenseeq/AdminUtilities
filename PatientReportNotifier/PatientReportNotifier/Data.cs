@@ -29,11 +29,6 @@ namespace PatientReportNotifier
         //a string to display information to the user via the main form
         internal static string userMessages;
 
-        internal static int ReportRecordCount
-        {
-            get { return (reportInfoRecordList != null) ? reportInfoRecordList.Count() : 0; }
-        }
-
         internal static bool loadSalespersonInfoFile(string inputFilePath)
         {
             List<worksheet> excelSheets = Workbook.Worksheets(inputFilePath).ToList();
@@ -322,27 +317,6 @@ namespace PatientReportNotifier
                 return cell.Text.Trim();
             else
                 return "";
-        }
-
-        private static worksheet ProcessWorksheet(worksheet sheet)
-        {
-            worksheet processedSheet = sheet;
-            try
-            {
-                foreach (Row r in processedSheet.Rows)
-                {
-                    foreach (Cell c in r.Cells)
-                    {
-                        if (string.IsNullOrEmpty(c.Text))
-                            c.Text = "";
-                    }
-                }
-                return sheet;
-            }
-            catch (Exception e)
-            {
-                return sheet;
-            }
         }
 
         private static string GetHtmlFromReportRecord(ReportInfoRecord reportRecord)

@@ -84,6 +84,7 @@ namespace PatientReportBasicInfoAutomation
 
         private void WriteReportButton_Click(object sender, EventArgs e)
         {
+            ReportInfoTextBox.Text = "";
             if (string.IsNullOrEmpty(SelectPatientInfoFileTextBox.Text))
                 ReportInfoTextBox.Text = "请选择病人基本信息文件";
 
@@ -93,7 +94,7 @@ namespace PatientReportBasicInfoAutomation
             if (string.IsNullOrEmpty(SelectOutputFolderTextBox.Text))
                 ReportInfoTextBox.Text = "请选择报告输出文件夹";
 
-            if (Data.writeOutputFile(SelectPatientInfoFileTextBox.Text, SelectTemplateFileTextBox.Text, SelectOutputFolderTextBox.Text))
+            if (Data.WriteOutputFile(SelectPatientInfoFileTextBox.Text, SelectTemplateFileTextBox.Text, SelectOutputFolderTextBox.Text))
             {
                 ReportInfoTextBox.Text = "报告输出成功";
             }

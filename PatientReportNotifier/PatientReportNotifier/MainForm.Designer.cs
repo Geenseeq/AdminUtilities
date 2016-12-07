@@ -95,7 +95,6 @@
             this.emailPasswordTextbox.TabIndex = 6;
             this.emailPasswordTextbox.Text = "请输入密码";
             this.emailPasswordTextbox.Visible = false;
-            this.emailPasswordTextbox.Click += new System.EventHandler(this.emailPasswordTextbox_Click);
             this.emailPasswordTextbox.GotFocus += new System.EventHandler(this.emailPasswordTextbox_GotFocus);
             this.emailPasswordTextbox.LostFocus += new System.EventHandler(this.emailPasswordTextbox_LostFocus);
             // 

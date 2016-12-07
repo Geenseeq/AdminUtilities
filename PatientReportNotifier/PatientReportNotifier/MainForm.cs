@@ -141,10 +141,6 @@ namespace PatientReportNotifier
             }
         }
 
-        private void emailPasswordTextbox_Click(object sender, EventArgs e)
-        {
-            emailPasswordTextbox_GotFocus(sender, e);
-        }
         private void emailPasswordTextbox_GotFocus(object sender, EventArgs e)
         {
             if (emailPasswordTextbox.Text == emailPasswordLabel)

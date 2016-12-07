@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
+using System.Collections;
 
 namespace PatientReportBasicInfoAutomation
 {
     class PatientBasicInfo
     {
-        private List<DateTime> sampleReceivingDates;
+        private List<DateTime> sampleReceivingDateList;
         private List<string> internalSampleIDList;
         private string patientName;
         private string gender;
@@ -20,6 +21,7 @@ namespace PatientReportBasicInfoAutomation
         private string hospital;
         private string doctorName;
         private List<string> sampleStructureList;
+        private List<string> hospitalSampleIDList;
         private List<string> sampleTypeList;
         private List<DateTime> sampleCollectionDateList;
         private string tumorCellPercentage;
@@ -28,15 +30,40 @@ namespace PatientReportBasicInfoAutomation
         private string familyHistory;
         private DateTime paymentDate;
         private DateTime reportDate;
+        private int recordsCount;
+
+        public List<DateTime> SampleReceivingDateList { get { return sampleReceivingDateList; } }
+        public List<string> InternalSampleIDList { get { return internalSampleIDList; } }
+        public string PatientName { get { return patientName; } }
+        public string Gender { get { return gender; } }
+        public DateTime Birthdate { get { return birthdate; } }
+        public string CitizenshipID { get { return citizenshipID; } }
+        public string Phone { get { return phone; } }
+        public string ContactName { get { return contactName; } }
+        public string Hospital { get { return hospital; } }
+        public string DoctorName { get { return doctorName; } }
+        public List<string> SampleStructureList { get { return sampleStructureList; } }
+        public List<string> HospitalSampleIDList { get { return hospitalSampleIDList; } }
+        public List<string> SampleTypeList { get { return sampleTypeList; } }
+        public List<DateTime> SampleCollectionDateList { get { return sampleCollectionDateList; } }
+        public string TumorCellPercentage { get { return tumorCellPercentage; } }
+        public string Diagnosis { get { return diagnosis; } }
+        public string DrugHistory { get { return drugHistory; } }
+        public string FamilyHistory { get { return familyHistory; } }
+        public DateTime PaymentDate { get { return paymentDate; } }
+        public DateTime ReportDate { get { return reportDate; } }
+        public int RecordsCount { get { return recordsCount; } }
+
 
         public PatientBasicInfo(Worksheet sheet)
         {
             Dictionary<string, int> indices = new Dictionary<string, int>();
             Range headerRow = sheet.UsedRange.Rows[1];
             for (int i = 1; i <= headerRow.Columns.Count; i++)
-                indices.Add(headerRow.Cells[1, i].Value, i);
+                indices.Add(headerRow.Cells[1, i].Text, i);
+            recordsCount = sheet.UsedRange.Rows.Count-1;
 
-            sampleReceivingDates = getDateListFromColumn(sheet.UsedRange.Columns[indices["收样日期"]]);
+            sampleReceivingDateList = getDateListFromColumn(sheet.UsedRange.Columns[indices["收样日期"]]);
             internalSampleIDList = getStringListFromColumn(sheet.UsedRange.Columns[indices["样本编号"]]);
             patientName = getStringListFromColumn(sheet.UsedRange.Columns[indices["病人姓名"]])[0];
             gender = getStringListFromColumn(sheet.UsedRange.Columns[indices["性别"]])[0];
@@ -49,6 +76,7 @@ namespace PatientReportBasicInfoAutomation
             if (!doctorName.Contains("医生"))
                 doctorName += "医生";
             sampleStructureList = getStringListFromColumn(sheet.UsedRange.Columns[indices["样本组织"]]);
+            hospitalSampleIDList = getStringListFromColumn(sheet.UsedRange.Columns[indices["医院样本号"]],true);
             sampleTypeList = getStringListFromColumn(sheet.UsedRange.Columns[indices["样本类型"]]);
             sampleCollectionDateList = getDateListFromColumn(sheet.UsedRange.Columns[indices["采样日期"]]);
             tumorCellPercentage = getStringListFromColumn(sheet.UsedRange.Columns[indices["肿瘤细胞含量"]])[0];
@@ -60,14 +88,19 @@ namespace PatientReportBasicInfoAutomation
 
         }
 
-        private List<string> getStringListFromColumn(Range column)
+        private List<string> getStringListFromColumn(Range column, bool includeNulls = false)
         {
             List<string> output = new List<string>();
             for(int i=2; i<=column.Cells.Count;i++)
             {
                 Range cell = column.Cells[i];
-                if (!string.IsNullOrEmpty(cell.Value) && !string.IsNullOrWhiteSpace(cell.Value))
-                    output.Add(cell.Value);
+                if (includeNulls)
+                {
+                    output.Add(cell.Text.Trim());
+                    continue;
+                }
+                if (!string.IsNullOrEmpty(cell.Text) && !string.IsNullOrWhiteSpace(cell.Text))
+                    output.Add(cell.Text);
             }
             return output;
         }
@@ -78,16 +111,13 @@ namespace PatientReportBasicInfoAutomation
             for (int i = 2; i <= column.Cells.Count; i++)
             {
                 Range cell = column.Cells[i];
-                if (cell.Value!=null)
+                if ( !string.IsNullOrEmpty(cell.Text) && !string.IsNullOrWhiteSpace(cell.Text))
                 {
                     DateTime currDate;
-                    double currDateDouble;
-                    //if (double.TryParse(cell.Value, out currDateDouble))
-                        //output.Add(DateTime.FromOADate(currDateDouble));
-                    if (DateTime.TryParse(cell.Value.ToString(), out currDate))
+                    if (DateTime.TryParse(cell.Text, out currDate))
                         output.Add(currDate);
-                    else if (!string.IsNullOrWhiteSpace(cell.Value))
-                        output.Add(getDateFromString(cell.Value));
+                    //else if (!string.IsNullOrWhiteSpace(cell.Text))
+                    //    output.Add(getDateFromString(cell.Text));
                 }
             }
             return output;
