@@ -135,6 +135,7 @@ namespace PatientInfoUpdateRequest
                     MailMessage mail = new MailMessage(useremail + domain, salespersonEmailDict[salesperson]);
                     mail.From = new MailAddress(useremail + domain);
                     mail.Sender = new MailAddress(useremail + domain);
+                    mail.CC.Add(mail.From);
                     mail.Body = htmlContent;
                     mail.IsBodyHtml = true;
                     mail.Subject = "订单 " + orderNumber + " 需要你的回复";
