@@ -36,7 +36,7 @@
 
         <Grid Name="actionArea" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1">
             <Grid.Background>
-                <ImageBrush ImageSource="images/chemistry.jpg" Opacity=".3"></ImageBrush>
+                <ImageBrush ImageSource="images/background.jpg" Opacity="1"></ImageBrush>
             </Grid.Background>
         </Grid>
 

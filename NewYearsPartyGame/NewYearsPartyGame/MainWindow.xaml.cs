@@ -28,6 +28,8 @@ namespace NewYearsPartyGame
         private MediaPlayer actionMP;
         private int empsPerRound = 20;
         private bool inChoosingEmps = false;
+        private string[] bgmFileNames = { "audio/bgm_0.mp3", "audio/bgm_1.mp3", "audio/bgm_2.mp3" };
+        private int currentBgmIndex = 0;
 
         private List<Employee> employeesList = new List<Employee>();
         private int empsChosen = 0;
@@ -169,10 +171,14 @@ namespace NewYearsPartyGame
             };
             bgmMP.MediaEnded += (o, args) =>
             {
-                bgmMP.Open(new Uri(@"audio/fly_now.mp3", UriKind.RelativeOrAbsolute));
+                bgmMP.Open(new Uri(bgmFileNames[currentBgmIndex], UriKind.RelativeOrAbsolute));
+                currentBgmIndex++;
+                if (currentBgmIndex >= bgmFileNames.Count())
+                    currentBgmIndex = 0;
                 bgmMP.Play();
             };
-            bgmMP.Open(new Uri(@"audio/fly_now.mp3", UriKind.RelativeOrAbsolute));
+            bgmMP.Open(new Uri(bgmFileNames[currentBgmIndex], UriKind.RelativeOrAbsolute));
+            currentBgmIndex++;
             bgmMP.Play();
 
         }
@@ -223,6 +229,8 @@ namespace NewYearsPartyGame
                 txbx.Width = photoWidth;
                 txbx.FontSize = 18;
                 txbx.FontWeight = FontWeights.Bold;
+                txbx.Background = Brushes.DeepSkyBlue;
+                txbx.Foreground = Brushes.White;
                 txbx.TextAlignment = TextAlignment.Center;
                 txbx.HorizontalAlignment = HorizontalAlignment.Center;
                 txbx.VerticalAlignment = VerticalAlignment.Bottom;
@@ -272,6 +280,11 @@ namespace NewYearsPartyGame
             };
 
             actionMP.MediaOpened += new EventHandler(ShowEmp);
+
+            actionMP.MediaEnded += (o, args) =>
+            {
+                bgmMP.Play();
+            };
         }
 
         private void ShowEmp(object sender, EventArgs e)
@@ -282,8 +295,6 @@ namespace NewYearsPartyGame
             if (empsChosen >= empsPerRound || employeesList.Count()==0)
             {
                 currEmp = null;
-                actionMP.Stop();
-                bgmMP.Play();
                 inChoosingEmps = false;
                 empsChosen = 0;
                 return;

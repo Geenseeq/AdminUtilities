@@ -101,11 +101,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\中国结.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\ExitButton.jpg" />
+    <Resource Include="images\ExitButton.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\photos\丁正.jpg">
@@ -611,150 +613,402 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="audio\fight.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="audio\bgm_0.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="audio\bgm_1.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="audio\bgm_2.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="audio\fly_now.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="images\boxing_ring.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Resource Include="images\photos\李玲.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="images\boxing_ring.png" />
-    <Resource Include="images\photos\李玲.png" />
-    <Resource Include="images\chemistry.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\transcriptase.png" />
     <Content Include="audio\stadium.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="images\photos\丁大东.jpg" />
-    <Resource Include="images\photos\于敏.jpg" />
-    <Resource Include="images\photos\卞晨莹.jpg" />
-    <Resource Include="images\photos\叶孝鹏.jpg" />
-    <Resource Include="images\photos\宋海洋.jpg" />
-    <Resource Include="images\photos\张聪胜.jpg" />
-    <Resource Include="images\photos\曹本进.jpg" />
-    <Resource Include="images\photos\朱翠萍.jpg" />
-    <Resource Include="images\photos\梁焱.jpg" />
-    <Resource Include="images\photos\邝雷.jpg" />
-    <Resource Include="images\photos\金琳.jpg" />
-    <Resource Include="images\photos\陈伟伟.jpg" />
-    <Resource Include="images\photos\韩臣.jpg" />
-    <Resource Include="images\photos\黄俊杰.jpg" />
-    <Resource Include="images\photos\乔爽.jpg" />
-    <Resource Include="images\photos\代伟伟.jpg" />
-    <Resource Include="images\photos\任东升.jpg" />
-    <Resource Include="images\photos\何林明.jpg" />
-    <Resource Include="images\photos\刘婉珍.jpg" />
-    <Resource Include="images\photos\刘思含.jpg" />
-    <Resource Include="images\photos\叶文婧.jpg" />
-    <Resource Include="images\photos\吕剑锋.jpg" />
-    <Resource Include="images\photos\夏长英.jpg" />
-    <Resource Include="images\photos\娄嘉.jpg" />
-    <Resource Include="images\photos\孙海曼.jpg" />
-    <Resource Include="images\photos\宫德明.jpg" />
-    <Resource Include="images\photos\张春旭.jpg" />
-    <Resource Include="images\photos\李轩.jpg" />
-    <Resource Include="images\photos\杨俊.jpg" />
-    <Resource Include="images\photos\王东.jpg" />
-    <Resource Include="images\photos\董馨泽.jpg" />
-    <Resource Include="images\photos\裴玉飞.jpg" />
-    <Resource Include="images\photos\陶玲艳.jpg" />
-    <Resource Include="images\photos\崔超.jpg" />
-    <Resource Include="images\photos\康俊俊.jpg" />
-    <Resource Include="images\photos\张善利.jpg" />
-    <Resource Include="images\photos\张环.jpg" />
-    <Resource Include="images\photos\张祥祥.jpg" />
-    <Resource Include="images\photos\张艳果.jpg" />
-    <Resource Include="images\photos\张飞.jpg" />
-    <Resource Include="images\photos\彭金.jpg" />
-    <Resource Include="images\photos\徐洁.jpg" />
-    <Resource Include="images\photos\戎凯锋.jpg" />
-    <Resource Include="images\photos\戴鸥.jpg" />
-    <Resource Include="images\photos\曾卫东.jpg" />
-    <Resource Include="images\photos\朱美君.jpg" />
-    <Resource Include="images\photos\朱镇升.jpg" />
-    <Resource Include="images\photos\李云鹏.jpg" />
-    <Resource Include="images\photos\李干平.jpg" />
-    <Resource Include="images\photos\李康权.JPG" />
-    <Resource Include="images\photos\李昆鹏.jpg" />
-    <Resource Include="images\photos\李晓冰.jpg" />
-    <Resource Include="images\photos\李炜亮.jpg" />
-    <Resource Include="images\photos\李美.jpg" />
-    <Resource Include="images\photos\李静.jpg" />
-    <Resource Include="images\photos\杜威.jpg" />
-    <Resource Include="images\photos\杨建滨.jpg" />
-    <Resource Include="images\photos\杨晓彤.jpg" />
-    <Resource Include="images\photos\杨玉洁.jpg" />
-    <Resource Include="images\photos\杨秀明.jpg" />
-    <Resource Include="images\photos\汪健.jpg" />
-    <Resource Include="images\photos\汪旭东.jpg" />
-    <Resource Include="images\photos\汪立.jpg" />
-    <Resource Include="images\photos\沈勇.jpg" />
-    <Resource Include="images\photos\沈楠.png" />
-    <Resource Include="images\photos\何佳晨.jpg" />
-    <Resource Include="images\photos\叶斌.jpg" />
-    <Resource Include="images\photos\张依然.jpg" />
-    <Resource Include="images\photos\李珂.jpg" />
-    <Resource Include="images\photos\杜冠军.jpg" />
-    <Resource Include="images\photos\汪福龙.jpg" />
-    <Resource Include="images\photos\潘李霞.jpg" />
-    <Resource Include="images\photos\白冰冰.jpg" />
-    <Resource Include="images\photos\聂引林.jpg" />
-    <Resource Include="images\photos\胡帆.jpg" />
-    <Resource Include="images\photos\葛东婷.jpg" />
-    <Resource Include="images\photos\赵苡佑.jpg" />
-    <Resource Include="images\photos\郭振修.jpg" />
-    <Resource Include="images\photos\阮恩宠.jpg" />
-    <Resource Include="images\photos\魏静婷.jpg" />
-    <Resource Include="images\photos\黄滨.jpg" />
-    <Resource Include="images\photos\潘奇伟.jpg" />
-    <Resource Include="images\photos\熊晓宇.jpg" />
-    <Resource Include="images\photos\王勋来.jpg" />
-    <Resource Include="images\photos\王总.jpg" />
-    <Resource Include="images\photos\王敏.jpg" />
-    <Resource Include="images\photos\王磊-销售.jpg" />
-    <Resource Include="images\photos\王立凤.jpg" />
-    <Resource Include="images\photos\王荣.jpg" />
-    <Resource Include="images\photos\田歌.jpg" />
-    <Resource Include="images\photos\田玲玲.jpg" />
-    <Resource Include="images\photos\祝梁斌.jpg" />
-    <Resource Include="images\photos\章乐华.jpg" />
-    <Resource Include="images\photos\罗志斌.jpg" />
-    <Resource Include="images\photos\罗星.jpg" />
-    <Resource Include="images\photos\蔡晓明.jpg" />
-    <Resource Include="images\photos\褚悦.jpg" />
-    <Resource Include="images\photos\许一楠.jpg" />
-    <Resource Include="images\photos\许丽梅.jpg" />
-    <Resource Include="images\photos\谢翔.JPG" />
-    <Resource Include="images\photos\谭文斯.jpg" />
-    <Resource Include="images\photos\贺建萍.jpg" />
-    <Resource Include="images\photos\赵娟.jpg" />
-    <Resource Include="images\photos\赵雲飞.jpg" />
-    <Resource Include="images\photos\邬浩.jpg" />
-    <Resource Include="images\photos\郭平.jpg" />
-    <Resource Include="images\photos\金亮.jpg" />
-    <Resource Include="images\photos\金同晅.jpg" />
-    <Resource Include="images\photos\陈丽娜.jpg" />
-    <Resource Include="images\photos\陈伟民.jpg" />
-    <Resource Include="images\photos\陈聪.jpg" />
-    <Resource Include="images\photos\陈超.jpg" />
-    <Resource Include="images\photos\陈钉权.jpg" />
-    <Resource Include="images\photos\雷曜.jpg" />
-    <Resource Include="images\photos\雷鸣.jpg" />
-    <Resource Include="images\photos\霍志超.jpg" />
-    <Resource Include="images\photos\韩瑞瑞.jpg" />
-    <Resource Include="images\photos\顾祎红.jpg" />
-    <Resource Include="images\photos\骆石.jpg" />
-    <Resource Include="images\photos\黄兰岚.JPG" />
-    <Resource Include="images\photos\黄振荣.jpg" />
-    <Resource Include="images\photos\黄静.jpg" />
-    <Resource Include="images\photos\齐齐格.png" />
-    <Resource Include="images\photos\曹慧.jpg" />
-    <Content Include="videos\sample.avi" />
-    <Resource Include="images\PlayButton.png" />
+    <Resource Include="images\photos\丁大东.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\于敏.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\卞晨莹.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\叶孝鹏.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\宋海洋.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\张聪胜.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\曹本进.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\朱翠萍.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\梁焱.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\邝雷.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\金琳.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\陈伟伟.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\韩臣.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\黄俊杰.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\乔爽.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\代伟伟.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\任东升.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\何林明.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\刘婉珍.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\刘思含.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\叶文婧.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\吕剑锋.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\夏长英.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\娄嘉.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\孙海曼.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\宫德明.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\张春旭.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\李轩.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\杨俊.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\王东.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\董馨泽.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\裴玉飞.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\陶玲艳.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\崔超.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\康俊俊.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\张善利.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\张环.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\张祥祥.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\张艳果.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\张飞.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\彭金.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\徐洁.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\戎凯锋.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\戴鸥.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\曾卫东.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\朱美君.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\朱镇升.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\李云鹏.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\李干平.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\李康权.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\李昆鹏.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\李晓冰.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\李炜亮.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\李美.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\李静.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\杜威.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\杨建滨.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\杨晓彤.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\杨玉洁.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\杨秀明.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\汪健.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\汪旭东.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\汪立.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\沈勇.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\沈楠.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\何佳晨.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\叶斌.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\张依然.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\李珂.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\杜冠军.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\汪福龙.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\潘李霞.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\白冰冰.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\聂引林.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\胡帆.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\葛东婷.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\赵苡佑.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\郭振修.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\阮恩宠.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\魏静婷.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\黄滨.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\潘奇伟.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\熊晓宇.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\王勋来.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\王威.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\王敏.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\王磊-销售.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\王立凤.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\王荣.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\田歌.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\田玲玲.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\祝梁斌.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\章乐华.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\罗志斌.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\罗星.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\蔡晓明.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\褚悦.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\许一楠.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\许丽梅.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\谢翔.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\谭文斯.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\贺建萍.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\赵娟.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\赵雲飞.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\邬浩.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\郭平.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\金亮.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\金同晅.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\陈丽娜.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\陈伟民.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\陈聪.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\陈超.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\陈钉权.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\雷曜.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\雷鸣.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\霍志超.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\韩瑞瑞.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\顾祎红.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\骆石.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\黄兰岚.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\黄振荣.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\黄静.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\齐齐格.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\photos\曹慧.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\background.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\PlayButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="stdole">
@@ -769,13 +1023,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>mkdir "$(TargetDir)\images\photos"
+copy "$(ProjectDir)\images\*.*" "$(TargetDir)\images"
+copy "$(ProjectDir)\images\photos\*.*" "$(TargetDir)\images\photos"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>mkdir "$(TargetDir)\images\photos"
-copy "$(ProjectDir)\images\*.*" "$(TargetDir)\images"
-copy "$(ProjectDir)\images\photos\*.*" "$(TargetDir)\images\photos"</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
