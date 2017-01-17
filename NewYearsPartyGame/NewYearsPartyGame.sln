@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewYearsPartyGame", "NewYearsPartyGame\NewYearsPartyGame.csproj", "{9CC975DC-BEFC-42DB-83B7-73BC7843911D}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "Installer\Installer.vdproj", "{E8D676AA-0300-4729-95C2-3A0B927EFFCE}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "Installer\Installer.vdproj", "{79E08C09-D697-43E7-BE68-44E78250EC0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,8 +17,10 @@ Global
 		{9CC975DC-BEFC-42DB-83B7-73BC7843911D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CC975DC-BEFC-42DB-83B7-73BC7843911D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CC975DC-BEFC-42DB-83B7-73BC7843911D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E8D676AA-0300-4729-95C2-3A0B927EFFCE}.Debug|Any CPU.ActiveCfg = Debug
-		{E8D676AA-0300-4729-95C2-3A0B927EFFCE}.Release|Any CPU.ActiveCfg = Release
+		{79E08C09-D697-43E7-BE68-44E78250EC0E}.Debug|Any CPU.ActiveCfg = Debug
+		{79E08C09-D697-43E7-BE68-44E78250EC0E}.Debug|Any CPU.Build.0 = Debug
+		{79E08C09-D697-43E7-BE68-44E78250EC0E}.Release|Any CPU.ActiveCfg = Release
+		{79E08C09-D697-43E7-BE68-44E78250EC0E}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

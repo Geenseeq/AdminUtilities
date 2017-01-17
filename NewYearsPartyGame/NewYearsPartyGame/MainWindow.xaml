@@ -5,39 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NewYearsPartyGame"
         mc:Ignorable="d"
-        Title="世和基因2017年会" Height="350" Width="525" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" WindowState="Maximized" Cursor="Hand" AllowsTransparency="True" WindowStyle="None">
+        Title="世和基因2017年会" Height="500" Width="800" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" WindowState="Maximized" Cursor="Hand" AllowsTransparency="True" WindowStyle="None">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="Black" Offset="0"/>
             <GradientStop Color="#FF60D7FF" Offset="1"/>
         </LinearGradientBrush>
     </Window.Background>
-    
-    
+
+
     <Grid Name="mainWindowGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid Name="topBannerGrid" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="0">
+        <Grid Name="topBannerGrid" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="0" Background="Transparent">
             <Button x:Name="exitButton" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="30" Click="exitButton_Click">
                 <StackPanel>
                     <Image Source="images/ExitButton.jpg"/>
                 </StackPanel>
             </Button>
 
-            <Button x:Name="button" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="30" Click="actionButton_Click">
+            <Button x:Name="pauseButton" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Stretch" Width="30" Click="actionButton_Click">
+                <StackPanel>
+                    <Image Source="images/PauseButton.png"/>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="playButton" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="30" Click="playButton_Click">
                 <StackPanel>
                     <Image Source="images/PlayButton.png"/>
                 </StackPanel>
             </Button>
+
         </Grid>
 
         <Grid Name="actionArea" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1">
             <Grid.Background>
-                <ImageBrush ImageSource="images/background.jpg" Opacity="1"></ImageBrush>
+                <ImageBrush ImageSource="/images/background.jpg" Opacity="1"></ImageBrush>
             </Grid.Background>
+            <TextBox x:Name="timerTextBox" HorizontalAlignment="Left" Height="251" Margin="236,91,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="316" Background="{x:Null}" Foreground="Red" BorderBrush="Transparent"/>
         </Grid>
 
     </Grid>

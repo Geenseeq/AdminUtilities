@@ -16,6 +16,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace NewYearsPartyGame
 {
@@ -27,27 +28,25 @@ namespace NewYearsPartyGame
         private MediaPlayer bgmMP;
         private MediaPlayer actionMP;
         private int empsPerRound = 20;
-        private bool inChoosingEmps = false;
+        private int totalCountdownTime = 15;
         private string[] bgmFileNames = { "audio/bgm_0.mp3", "audio/bgm_1.mp3", "audio/bgm_2.mp3" };
         private int currentBgmIndex = 0;
+        Random rnd = new Random();
+
+        DispatcherTimer cycleTimer = new DispatcherTimer();
+        DispatcherTimer runningTimer = new DispatcherTimer();
+        private bool inActionAnimation = false;
+        private bool inCycleAnimation = false;
 
         private List<Employee> employeesList = new List<Employee>();
-        private int empsChosen = 0;
+        private List<Employee> displayedEmpList = new List<Employee>();
         private List<Grid> employeesChosenGridList = new List<Grid>();
         Employee currEmp = null;
-        //private Ellipse transcriptase;
-        private int circleRaius = 17;
         private double photoWidth;
         private double photoHeight;
         private Duration translateDuration = new Duration(new TimeSpan(0, 0, 0, 5, 0));
-        private List<double> chosenEmpsXCoords;
-        private double[] chosenEmpsYCoord;
-
-        //TranslateTransform ttx = new TranslateTransform();
-        //TranslateTransform tty = new TranslateTransform();
-        //DoubleAnimation dax = new DoubleAnimation();
-        //DoubleAnimation day = new DoubleAnimation();
-        //TransformGroup tg = new TransformGroup();
+        private List<double> chosenEmpsXCoords = new List<double>();
+        private double[] chosenEmpsYCoords;
 
         public MainWindow()
         {
@@ -58,117 +57,36 @@ namespace NewYearsPartyGame
 
         }
 
-        private void DrawLine(Point orig, Point dest)
-        {
-            DoubleCollection dashes = new DoubleCollection();
-            dashes.Add(1);
-            dashes.Add(1);
-            Line line = new Line
-            {
-                StrokeThickness = 3,
-                StrokeDashArray = dashes,
-                Stroke = new SolidColorBrush(Colors.DarkBlue),
-                X1 = orig.X + circleRaius,
-                Y1 = orig.Y + circleRaius,
-                X2 = dest.X + circleRaius,
-                Y2 = dest.Y + circleRaius
-            };
-            actionArea.Children.Add(line);
-        }
-
         private void LoadEmployees()
         {
-            photoWidth = actionArea.ActualWidth / 13;
-            photoHeight = actionArea.ActualHeight / 6;
+            DirectoryInfo d = new DirectoryInfo(@"photos");
+            FileInfo[] files = d.GetFiles("*.*");
 
-            DirectoryInfo d = new DirectoryInfo(@"images\photos");
-            FileInfo[] Files = d.GetFiles("*.*");
-            int nEmps = Files.Count();
-            int empsPerStrand = (int)Math.Ceiling(((double)nEmps) / 4);
-            List<double> xCoordsList = new List<double>();
-            List<double> yCoordsList = new List<double>();
-            double xMargin = actionArea.ActualWidth / 20;
-
-            double xSeparation = actionArea.ActualWidth * 9 / 10 / empsPerStrand;
-            Pen drawingPen = new Pen(Brushes.Black, 1);
-            //strand 1
-            for (int i = 0; i < empsPerStrand; i++)
+            foreach (FileInfo file in files)
             {
-                double yCenter = actionArea.ActualHeight * 3 / 5;
-                double x = xMargin + xSeparation * i;
-                double y = Math.Sin((double)i / empsPerStrand * 10 * Math.PI) * actionArea.ActualHeight / 12 + yCenter;
-
-                if (i != 0)
-                    DrawLine(new Point(xCoordsList.Last(), yCoordsList.Last()), new Point(x, y));
-
-                xCoordsList.Add(x);
-                yCoordsList.Add(y);
-            }
-            //strand 2 (pairs with strand 1)
-            for (int i = 0; i < empsPerStrand; i++)
-            {
-                double yCenter = actionArea.ActualHeight * 3 / 5;
-                double x = xMargin + xSeparation * i;
-                double y = Math.Sin((double)i / empsPerStrand * 10 * Math.PI + Math.PI / 1.2) * actionArea.ActualHeight / 12 + yCenter;
-
-                DrawLine(new Point(x, y), new Point(xCoordsList[i], yCoordsList[i]));
-                if (i != 0)
-                    DrawLine(new Point(xCoordsList.Last(), yCoordsList.Last()), new Point(x, y));
-
-                xCoordsList.Add(x);
-                yCoordsList.Add(y);
-            }
-            //strand 3
-            for (int i = 0; i < empsPerStrand; i++)
-            {
-                double yCenter = actionArea.ActualHeight * 4 / 5;
-                double x = xMargin + xSeparation * i;
-                double y = Math.Sin((double)i / empsPerStrand * 10 * Math.PI + Math.PI / 2) * actionArea.ActualHeight / 12 + yCenter;
-
-                if (i != 0)
-                    DrawLine(new Point(xCoordsList.Last(), yCoordsList.Last()), new Point(x, y));
-
-                xCoordsList.Add(x);
-                yCoordsList.Add(y);
-            }
-            //strand 4 (pairs with strand 3)
-            for (int i = 0; i < empsPerStrand; i++)
-            {
-                double yCenter = actionArea.ActualHeight * 4 / 5;
-                double x = xMargin + xSeparation * i;
-                double y = Math.Sin((double)i / empsPerStrand * 10 * Math.PI + Math.PI / 1.2 + Math.PI / 2) * actionArea.ActualHeight / 12 + yCenter;
-
-                DrawLine(new Point(x, y), new Point(xCoordsList[i + empsPerStrand * 2], yCoordsList[i + empsPerStrand * 2]));
-                if (i != 0)
-                    DrawLine(new Point(xCoordsList.Last(), yCoordsList.Last()), new Point(x, y));
-
-                xCoordsList.Add(x);
-                yCoordsList.Add(y);
-            }
-
-            for (int i = 0; i < nEmps; i++)
-            {
-                FileInfo file = Files[i];
-                Employee emp = new Employee(file.Name.Split('.')[0], file.FullName, xCoordsList[i], yCoordsList[i], photoWidth, photoHeight, circleRaius);
-                Thread.Sleep(1);
+                Employee emp = new Employee(file.Name.Split('.')[0], file.FullName);
                 employeesList.Add(emp);
-                actionArea.Children.Add(emp.Grid);
             }
         }
 
         private void ActionGrid_Loaded(object sender, EventArgs e)
         {
-
+            photoWidth = actionArea.ActualWidth / 9;
+            photoHeight = actionArea.ActualHeight / 4;
             LoadEmployees();
 
             InitializeVisuals();
 
+            timerTextBox.Text = "";
+            timerTextBox.FontSize = 100;
+            timerTextBox.FontWeight = FontWeights.ExtraBold;
+            timerTextBox.Width = photoWidth;
+            timerTextBox.Height = photoHeight;
+            timerTextBox.TextAlignment = TextAlignment.Center;
+
+
             bgmMP = new MediaPlayer();
 
-            bgmMP.MediaFailed += (o, args) =>
-            {
-                MessageBox.Show("BGM Media Failed!!");
-            };
             bgmMP.MediaEnded += (o, args) =>
             {
                 bgmMP.Open(new Uri(bgmFileNames[currentBgmIndex], UriKind.RelativeOrAbsolute));
@@ -177,74 +95,88 @@ namespace NewYearsPartyGame
                     currentBgmIndex = 0;
                 bgmMP.Play();
             };
+            //bgmMP.MediaOpened += new EventHandler(CycleEmployeePhotos);
             bgmMP.Open(new Uri(bgmFileNames[currentBgmIndex], UriKind.RelativeOrAbsolute));
             currentBgmIndex++;
             bgmMP.Play();
-
         }
+
+        private void CycleEmployeePhotos(object sender, EventArgs e)
+        {
+            displayedEmpList.Clear();
+            if (employeesList.Count() < empsPerRound)
+                empsPerRound = employeesList.Count();
+            while (displayedEmpList.Count() < empsPerRound)
+            {
+                int randomIndex = rnd.Next(employeesList.Count());
+                currEmp = employeesList[randomIndex];
+                if (!displayedEmpList.Contains(currEmp))
+                    displayedEmpList.Add(currEmp);
+            }
+
+            for (int i = 0; i < empsPerRound; i++)
+            {
+
+                currEmp = displayedEmpList[i];
+                (employeesChosenGridList[i].Children[0] as Image).Source = currEmp.Photo;
+                (employeesChosenGridList[i].Children[1] as TextBox).Text = currEmp.Name;
+                employeesChosenGridList[i].Visibility = Visibility.Visible;
+            }
+        }
+
 
         private void InitializeVisuals()
         {
-            //transcriptase = new Ellipse();
-            //BitmapImage img = new BitmapImage(new Uri(@"images/transcriptase.png", UriKind.RelativeOrAbsolute));
-            //transcriptase.Fill = new ImageBrush(img);
-            //transcriptase.Width = circleRaius * 6;
-            //transcriptase.Height = circleRaius * 6;
-            ////Canvas.SetLeft(transcriptase, actionArea.ActualWidth / 2);
-            ////Canvas.SetTop(transcriptase, 0 - actionArea.ActualHeight / 2);
-            //transcriptase.VerticalAlignment = VerticalAlignment.Top;
-            //transcriptase.HorizontalAlignment = HorizontalAlignment.Center;
-            //actionArea.Children.Add(transcriptase);
+            double xMargin = actionArea.ActualWidth / 23;
+            double xSeparation = xMargin / 2;
+            double ySeparation = xMargin / 2;
 
-            chosenEmpsXCoords = new List<double>();
-            double xMargin = actionArea.ActualWidth / 20;
-            double xSeparation = actionArea.ActualWidth * 9 / 5 / empsPerRound;
-            //make two rows
-            for (int j = 0; j < 2; j++)
-            {
-                for (int i = 0; i < empsPerRound / 2; i++)
-                {
-                    chosenEmpsXCoords.Add(xMargin + i * xSeparation);
-                }
-            }
-            chosenEmpsYCoord = new Double[] { actionArea.ActualHeight / 20, actionArea.ActualHeight / 3.5 };
+            //make three rows of seven pics each; bottom right one is for timer
+            for (int i = 0; i < 7; i++)
+                chosenEmpsXCoords.Add(xMargin + (photoWidth + xSeparation) * i);
+            chosenEmpsYCoords = new Double[] { ySeparation, ySeparation + photoHeight + ySeparation, ySeparation + (photoHeight + ySeparation) * 2};
 
 
             employeesChosenGridList = new List<Grid>();
-            for(int i=0; i<empsPerRound; i++)
+            foreach (Double x in chosenEmpsXCoords)
             {
-                Grid _grid = new Grid();
-                Ellipse photoEllipse = new Ellipse();
-                photoEllipse.Name = "photo";
-                photoEllipse.Width = photoWidth * .93;
-                photoEllipse.Height = photoHeight;
-                photoEllipse.HorizontalAlignment = HorizontalAlignment.Center;
-                photoEllipse.VerticalAlignment = VerticalAlignment.Top;
-                _grid.Children.Add(photoEllipse);
+                foreach (Double y in chosenEmpsYCoords)
+                {
+                    if (chosenEmpsXCoords.IndexOf(x)==6 && chosenEmpsYCoords.ElementAt(2) == y)
+                    {
+                        timerTextBox.Margin = new Thickness(x, y, 0, 0);
+                        continue;
+                    }
+                    Grid _grid = new Grid();
+                    Image photo = new Image();
+                    photo.Name = "photo";
+                    photo.Width = photoWidth * .93;
+                    photo.Height = photoHeight;
+                    photo.HorizontalAlignment = HorizontalAlignment.Center;
+                    photo.VerticalAlignment = VerticalAlignment.Top;
+                    _grid.Children.Add(photo);
 
 
-                TextBox txbx = new TextBox();
-                txbx.Name = "name";
-                txbx.Height = photoHeight / 5;
-                txbx.Width = photoWidth;
-                txbx.FontSize = 18;
-                txbx.FontWeight = FontWeights.Bold;
-                txbx.Background = Brushes.DeepSkyBlue;
-                txbx.Foreground = Brushes.White;
-                txbx.TextAlignment = TextAlignment.Center;
-                txbx.HorizontalAlignment = HorizontalAlignment.Center;
-                txbx.VerticalAlignment = VerticalAlignment.Bottom;
-                _grid.Children.Add(txbx);
+                    TextBox txbx = new TextBox();
+                    txbx.Name = "name";
+                    txbx.Height = photoHeight / 5;
+                    txbx.Width = photoWidth;
+                    txbx.FontSize = 18;
+                    txbx.FontWeight = FontWeights.Bold;
+                    txbx.Background = Brushes.DeepSkyBlue;
+                    txbx.Foreground = Brushes.White;
+                    txbx.TextAlignment = TextAlignment.Center;
+                    txbx.HorizontalAlignment = HorizontalAlignment.Center;
+                    txbx.VerticalAlignment = VerticalAlignment.Bottom;
+                    _grid.Children.Add(txbx);
 
-                _grid.Visibility = Visibility.Hidden;
-                _grid.HorizontalAlignment = HorizontalAlignment.Left;
-                _grid.VerticalAlignment = VerticalAlignment.Top;
-                if (i<empsPerRound/2)
-                    _grid.Margin = new Thickness(chosenEmpsXCoords[i], chosenEmpsYCoord[0], 0, 0);
-                else
-                    _grid.Margin = new Thickness(chosenEmpsXCoords[i], chosenEmpsYCoord[1], 0, 0);
-                actionArea.Children.Add(_grid);
-                employeesChosenGridList.Add(_grid);
+                    _grid.Visibility = Visibility.Hidden;
+                    _grid.HorizontalAlignment = HorizontalAlignment.Left;
+                    _grid.VerticalAlignment = VerticalAlignment.Top;
+                    _grid.Margin = new Thickness(x, y, 0, 0);
+                    actionArea.Children.Add(_grid);
+                    employeesChosenGridList.Add(_grid);
+                }
             }
         }
 
@@ -255,31 +187,41 @@ namespace NewYearsPartyGame
 
         private void actionButton_Click(object sender, RoutedEventArgs e)
         {
-            if (inChoosingEmps)
+            if (inActionAnimation || employeesList.Count <= 0)
                 return;
 
-            inChoosingEmps = true;
-            Random rnd = new Random();
+            inActionAnimation = true;
+            cycleTimer.Stop();
+            foreach (Employee emp in displayedEmpList)
+                employeesList.Remove(emp);
 
-            if (employeesList.Count <= 0)
-                return;
+            int _time = totalCountdownTime;
+            timerTextBox.Text = _time.ToString();
 
-            foreach(Grid g in employeesChosenGridList)
-            {
-                g.Visibility = Visibility.Hidden;
-            }
+            runningTimer = new DispatcherTimer();
+            runningTimer.Interval = TimeSpan.FromSeconds(1);
+            runningTimer.Tick += (o, args) =>
+              {
+                  timerTextBox.Text = _time.ToString();
+                  if (_time <= 0)
+                  {
+                      runningTimer.Stop();
+                      //cycleTimer.Start();
+                      timerTextBox.Text = "";
+                      inCycleAnimation = false;
+                      inActionAnimation = false;
+                      actionMP.Stop();
+                      bgmMP.Play();
+                  }
+                  _time--;
+              };
+
+            runningTimer.Start();
 
             bgmMP.Pause();
             actionMP = new MediaPlayer();
             actionMP.Open(new Uri(@"audio/stadium.mp3", UriKind.RelativeOrAbsolute));
             actionMP.Play();
-
-            actionMP.MediaFailed += (o, args) =>
-            {
-                MessageBox.Show("Media Failed!!");
-            };
-
-            actionMP.MediaOpened += new EventHandler(ShowEmp);
 
             actionMP.MediaEnded += (o, args) =>
             {
@@ -287,15 +229,28 @@ namespace NewYearsPartyGame
             };
         }
 
+        private void playButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (inCycleAnimation || inActionAnimation || employeesList.Count <= 0)
+                return;
+            inCycleAnimation = true;
+            cycleTimer = new DispatcherTimer(DispatcherPriority.Render);
+            cycleTimer.Interval = TimeSpan.FromSeconds(.1);
+            cycleTimer.Tick += CycleEmployeePhotos;
+            cycleTimer.Start();
+
+        }
+
+        /*
         private void ShowEmp(object sender, EventArgs e)
         {
             //if (currEmp != null)
             //{
             //}
-            if (empsChosen >= empsPerRound || employeesList.Count()==0)
+            if (empsChosen >= empsPerRound || employeesList.Count() == 0)
             {
                 currEmp = null;
-                inChoosingEmps = false;
+                inChoosingEmps = true;
                 empsChosen = 0;
                 return;
             }
@@ -307,9 +262,9 @@ namespace NewYearsPartyGame
             double deltaX = chosenEmpsXCoords[empsChosen] - currEmp.X;
             double deltaY;
             if (empsChosen < empsPerRound / 2)
-                deltaY = chosenEmpsYCoord[0] - currEmp.Y;
+                deltaY = chosenEmpsYCoords[0] - currEmp.Y;
             else
-                deltaY = chosenEmpsYCoord[1] - currEmp.Y;
+                deltaY = chosenEmpsYCoords[1] - currEmp.Y;
 
 
             TranslateTransform ttx = new TranslateTransform();
@@ -319,9 +274,9 @@ namespace NewYearsPartyGame
             //dax = new DoubleAnimation(currEmp.X, chosenEmpsXCoords[empsChosen], new Duration(TimeSpan.FromSeconds(1)));
             dax = new DoubleAnimation(deltaX, new Duration(TimeSpan.FromSeconds(.5)));
             //if (empsChosen < empsPerRound / 2)
-            //    day = new DoubleAnimation(currEmp.Y, chosenEmpsYCoord[0], new Duration(TimeSpan.FromSeconds(1)));
+            //    day = new DoubleAnimation(currEmp.Y, chosenEmpsYCoords[0], new Duration(TimeSpan.FromSeconds(1)));
             //else
-            //    day = new DoubleAnimation(currEmp.Y, chosenEmpsYCoord[1], new Duration(TimeSpan.FromSeconds(1)));
+            //    day = new DoubleAnimation(currEmp.Y, chosenEmpsYCoords[1], new Duration(TimeSpan.FromSeconds(1)));
             day = new DoubleAnimation(deltaY, new Duration(TimeSpan.FromSeconds(.5)));
             TransformGroup tg = new TransformGroup();
             tg.Children.Add(ttx);
@@ -358,7 +313,7 @@ namespace NewYearsPartyGame
             tty.BeginAnimation(TranslateTransform.YProperty, day);
 
         }
-
+        */
         /*
         private void TranscriptaseGrabEmp(object sender, EventArgs e)
         {
@@ -420,9 +375,9 @@ namespace NewYearsPartyGame
             double deltaX = chosenEmpsXCoords[empsChosen] - currEmp.X;
             double deltaY;
             if (empsChosen < empsPerRound / 2)
-                deltaY = chosenEmpsYCoord[0] - currEmp.Y;
+                deltaY = chosenEmpsYCoords[0] - currEmp.Y;
             else
-                deltaY = chosenEmpsYCoord[1] - currEmp.Y;
+                deltaY = chosenEmpsYCoords[1] - currEmp.Y;
 
 
             TranslateTransform ttx = new TranslateTransform();
@@ -432,9 +387,9 @@ namespace NewYearsPartyGame
             //dax = new DoubleAnimation(currEmp.X, chosenEmpsXCoords[empsChosen], new Duration(TimeSpan.FromSeconds(1)));
             dax = new DoubleAnimation(deltaX, new Duration(TimeSpan.FromSeconds(1)));
             //if (empsChosen < empsPerRound / 2)
-            //    day = new DoubleAnimation(currEmp.Y, chosenEmpsYCoord[0], new Duration(TimeSpan.FromSeconds(1)));
+            //    day = new DoubleAnimation(currEmp.Y, chosenEmpsYCoords[0], new Duration(TimeSpan.FromSeconds(1)));
             //else
-            //    day = new DoubleAnimation(currEmp.Y, chosenEmpsYCoord[1], new Duration(TimeSpan.FromSeconds(1)));
+            //    day = new DoubleAnimation(currEmp.Y, chosenEmpsYCoords[1], new Duration(TimeSpan.FromSeconds(1)));
             day = new DoubleAnimation(deltaY, new Duration(TimeSpan.FromSeconds(1)));
             TransformGroup tg = new TransformGroup();
             tg.Children.Add(ttx);
