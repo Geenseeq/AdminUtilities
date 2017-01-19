@@ -189,7 +189,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:2017年会游戏"
         "ProductCode" = "8:{79EFAB7F-89D6-4DE9-A7E6-59384833E6F4}"
-        "PackageCode" = "8:{2FFD1B18-FE42-44BD-9277-B33DA5A4F3F4}"
+        "PackageCode" = "8:{A5E2B375-1CED-4FA1-BFE8-346B5CD62CC9}"
         "UpgradeCode" = "8:{77428663-DF03-428A-87C9-C0C376A5EA50}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -309,6 +309,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_1DDBDE1C9F41493386EB1C4C993E35B8"
+            {
+            "Name" = "8:2017世和基因年会"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_0C91B82EFE054CE8A1410C7F470EA23E"
+            "Folder" = "8:_DA60E17B2E8E425386AC68D2209DF67E"
+            "WorkingFolder" = "8:_2D46B54E2BF145919C97008CC0D88733"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
